@@ -18,9 +18,9 @@ def loop_size(node):
                 fast = fast.next 
                 counter += 1
                 if fast == slow:
-                    return counter - 1
+                    return counter
             raise Cringe
-                
+
 if __name__ == '__main__':
     node1 = Node()
     node2 = Node()

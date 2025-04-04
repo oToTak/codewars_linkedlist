@@ -5,25 +5,25 @@ class Node(object):
         self.data = data
         self.next = next
 
-def inserrt(head, data, place):
-    start = head
-    for _ in range(place):
-        start = start.next
-
-    start = Node(data, start)
-
-    return head
-    
+    def __repr__(self):
+        return f"{self.data} -> {self.next}" if self.next else f"{self.data}"
 
 def sorted_insert(head, data):
-    start = head
-    num = 0
-    while True:
-        if start.data < data and start.next.data > data:
-            return inserrt(head, data, num+1)
-        num += 1
-        start = head.next
+    new_node = Node(data)
+
+    if head is None or data < head.data:
+        new_node.next = head
+        return new_node
+
+    current = head
+    while current.next and current.next.data < data:
+        current = current.next
+
+    new_node.next = current.next
+    current.next = new_node
+
+    return head
 
 if __name__ == '__main__':
-    a = sorted_insert(Node(1, (Node(2, Node(7, Node(8))))), 6)
+    a = sorted_insert(Node(1, Node(2, Node(7, Node(8)))), 6)
     print(a)
