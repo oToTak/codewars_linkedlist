@@ -13,7 +13,7 @@ def reverse(head):
         if start is None:
             break
 
-        res = Node(int(start.data), res)
+        res = Node(start.data, res)
 
         start = start.next 
 

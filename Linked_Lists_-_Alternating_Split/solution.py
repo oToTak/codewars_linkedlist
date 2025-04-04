@@ -1,25 +1,47 @@
-''' task 2 '''
-class Node:
-    def __init__(self, data, next=None): 
+''' task -2 '''
+class Node(object):
+    def __init__(self, data=None, next=None):
         self.data = data
         self.next = next
+    
+class Context(object):
+    def __init__(self, first, second):
+        self.first = first
+        self.second = second
+    
+def alternating_split(head):
+    if head is None or head.next is None:
+        raise Cringe
 
-def linked_list_from_string(s):
-    d = [el.strip() for el in s.split('->') if el.strip() != 'None'][::-1]
-    prev = None
-    for el in d:
-        prev = Node(int(el), prev)
+    flag = True
+    start = head
+    first = []
+    second = []
 
-    return prev
+    while True:
+        if flag is True:
+            load = first
+            flag = False
+        elif flag is False:
+            load = second
+            flag = True
 
-def stringify(self):
-    if self is None:
-        return "None"
-    if self.next is None:
-        return f"{self.data} -> None"
-    return f"{self.data} -> {stringify(self.next)}"
+        load.append(start.data)
 
-if __name__ == '__main__':
-    a = linked_list_from_string('0 -> 1 -> 2 -> 3 -> None')
-    print(a)
-    print(stringify(a))
+        if start.next is None:
+            break
+
+        start = start.next
+
+    first = first[::-1]
+    second = second[::-1]
+
+    def list_to_reversed_linlist(s):
+        prev = None
+        for el in s:
+            prev = Node(int(el), prev)
+
+        return prev
+
+    a = list_to_reversed_linlist
+    return Context(a(first), a(second))
